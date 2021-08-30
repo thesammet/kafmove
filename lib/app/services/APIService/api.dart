@@ -5,7 +5,7 @@ class API {
   API({@required this.apiKey});
   final String apiKey;
 
-  factory API.sandbox() => API(apiKey: APIKeys.omakademiSandboxKey);
+  factory API.sandbox() => API(apiKey: APIKeys.moveSandboxKey);
 
   static final String host = "movetech.app/api";
 }

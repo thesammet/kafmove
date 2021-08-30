@@ -1,4 +1,4 @@
 class APIKeys {
-  static String omakademiSandboxKey =
+  static String moveSandboxKey =
       "XbsxHcr7c5XVgz0rUORgp8lJUlY8TeyXwKYEGmyc4bMjg1Wx4yXbmH5CrIvyusFmx5KUnZEBBIKanlHFRu7jsDs3ETRqRfiJqtwEfulLsLvpKz4E1x8XsJEZF9VRL0Jzc55trnkk8w27bdWSRbRwcJbeNxtp0iCRRXNr5i6ZNbrdBg5JHE3qgBPicD7pRtEVq7iFrToSHiiWbQINAjNr4B7FThbJm8U9amKkDVyD7qyYDcTWABOlQdQgFj3J0OBG";
 }
