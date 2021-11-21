@@ -4,6 +4,7 @@ import 'dart:io';
 import 'dart:convert';
 import 'dart:async';
 import 'package:move/app/networking/CustomException.dart';
+import 'package:move/app/services/shared_config.dart';
 
 class ApiProvider {
   final String _baseUrl = "https://movetech.app/api";
@@ -14,8 +15,7 @@ class ApiProvider {
     try {
       final response = await http.post(_baseUrl + url, headers: {
         "Device": "123456",
-        "X-Token":
-            "sRwSEZC0hgpn9gZ560CWHevzGAxsJ458meBC5nA0jgDzGAkCEcUdOngaKgmuefgbZUXEMxKl4Frn5LIHOpdIQdLBfaj4RlQ9ZBZiBDK4Pi3IqJXRuU8qIylQQverzeTfHOqDzX35BUoSCJWMkrI1HtSgcAXggmDIX5EMqTxoUhGXUmOR5STwoZj8NIaVNxQYdwEx2a8866swfKKYBYDNC1phnF1e33kmusRFSohPHk8HFwCIKVxBIDMAxVC9BEha",
+        "X-Token": StorageUtil.getString("token"),
       }, body: {
         bodyMap
       });

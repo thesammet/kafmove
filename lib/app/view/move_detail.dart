@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:move/app/models/EventResponse.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -62,24 +61,12 @@ class _MoveCardDetailState extends State<MoveCardDetail> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 300,
-                  width: double.infinity,
-                  child: CachedNetworkImage(
-                    imageUrl: widget.eventData.events[widget.index].photo,
-                    imageBuilder: (context, imageProvider) => Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
-                            colorFilter: ColorFilter.mode(
-                                const Color(0xff000619).withOpacity(0.2),
-                                BlendMode.colorBurn)),
-                      ),
-                    ),
-                    placeholder: (context, url) => CircularProgressIndicator(),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
-                  ),
-                ),
+                    height: 300,
+                    width: double.infinity,
+                    child: Image.network(
+                      widget.eventData.events[widget.index].photo,
+                      fit: BoxFit.cover,
+                    )),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20)
                       .copyWith(top: 8.0),
@@ -151,6 +138,7 @@ class _MoveCardDetailState extends State<MoveCardDetail> {
               ),
               child: GestureDetector(
                 onTap: () async {
+                  print("a");
                   await canLaunch(
                           widget.eventData.events[widget.index].location)
                       ? await launch(

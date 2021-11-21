@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/scheduler.dart';
 import 'package:http/http.dart' as http;
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:move/app/models/ProfileDetailResponse.dart';
@@ -191,9 +190,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         Row(
                           children: [
                             CircleAvatar(
-                              backgroundImage: CachedNetworkImageProvider(
-                                  widget.profResponse.user.profilePhoto),
-                            ),
+                                backgroundImage: NetworkImage(
+                                    widget.profResponse.user.profilePhoto)),
                             SizedBox(
                               width: 20,
                             ),

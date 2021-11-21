@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:move/app/models/EventResponse.dart';
 import 'package:move/app/view/move_detail.dart';
@@ -32,23 +31,10 @@ class _MoveCardState extends State<MoveCard> {
         padding: const EdgeInsets.symmetric(vertical: 4.0),
         child: Column(
           children: [
-            SizedBox(
+            Image.network(
+              widget.eventData.events[widget.index].photo,
+              fit: BoxFit.cover,
               height: 300,
-              child: CachedNetworkImage(
-                imageUrl: widget.eventData.events[widget.index].photo,
-                imageBuilder: (context, imageProvider) => Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: imageProvider,
-                        fit: BoxFit.cover,
-                        colorFilter: ColorFilter.mode(
-                            const Color(0xff000619).withOpacity(0.2),
-                            BlendMode.colorBurn)),
-                  ),
-                ),
-                placeholder: (context, url) => CircularProgressIndicator(),
-                errorWidget: (context, url, error) => Icon(Icons.error),
-              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 8.0),

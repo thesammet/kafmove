@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:move/app/components/input_conatiner.dart';
 import 'package:move/app/components/rounded_button.dart';
 import 'package:move/app/components/rounded_input.dart';
@@ -125,9 +126,16 @@ class _RegisterState extends State<Register> {
     }
   }
 
+  File _imageFile;
+  Future<void> _selectAndPickImage() async {
+    _imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
+    print(_imageFile);
+  }
+
   Future<RegisterResponse> _futureRegister;
   @override
   Widget build(BuildContext context) {
+    final double _screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.black,
       body: Container(
@@ -163,6 +171,25 @@ class _RegisterState extends State<Register> {
                     ),
                   ],
                 ),
+              ),
+              InkWell(
+                onTap: _selectAndPickImage,
+                child: CircleAvatar(
+                  radius: _screenWidth * 0.15,
+                  backgroundColor: Colors.white,
+                  backgroundImage:
+                      _imageFile == null ? null : FileImage(_imageFile),
+                  child: _imageFile == null
+                      ? Icon(
+                          Icons.person,
+                          size: _screenWidth * 0.15,
+                          color: Colors.grey,
+                        )
+                      : null,
+                ),
+              ),
+              SizedBox(
+                height: 8.0,
               ),
               Form(
                 key: _formKey,
@@ -668,7 +695,18 @@ class _RegisterState extends State<Register> {
 
                             return Text("girdi");
                           } else if (snapshot.hasError) {
-                            return Text('${snapshot.error}');
+                            setState(() {
+                              _futureRegister = null;
+                            });
+                            Fluttertoast.showToast(
+                                msg:
+                                    "Hata meydana geldi. Daha sonra tekrar deneyin.",
+                                toastLength: Toast.LENGTH_LONG,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIosWeb: 3,
+                                backgroundColor: Colors.yellow,
+                                textColor: Colors.white,
+                                fontSize: 16.0);
                           }
 
                           return const CircularProgressIndicator();

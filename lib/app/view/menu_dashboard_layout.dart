@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -15,6 +13,7 @@ import 'package:move/app/view/naviPages/privacy.dart';
 import 'package:move/app/view/naviPages/profile_settings.dart';
 import 'package:http/http.dart' as http;
 import 'package:move/app/view/profile.dart';
+import 'package:move/app/view/search_page.dart';
 import 'package:platform_device_id/platform_device_id.dart';
 
 class MenuDashboardPage extends StatefulWidget {
@@ -294,6 +293,21 @@ class _MenuDashboardPageState extends State<MenuDashboardPage> {
                         height: 10,
                       ),
                       NavItem(
+                        ic: Icons.search,
+                        text: "Arama",
+                        vC: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SearchPage()),
+                          );
+                          print("Arama Tıklandı.");
+                        },
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      /*NavItem(
                         ic: Icons.privacy_tip,
                         text: "Gizlilik",
                         vC: () {
@@ -306,8 +320,8 @@ class _MenuDashboardPageState extends State<MenuDashboardPage> {
                       ),
                       SizedBox(
                         height: 10,
-                      ),
-                      NavItem(
+                      ),*/
+                      /*NavItem(
                         ic: Icons.notifications,
                         text: "Bildirim",
                         vC: () {
@@ -321,7 +335,7 @@ class _MenuDashboardPageState extends State<MenuDashboardPage> {
                       ),
                       SizedBox(
                         height: 10,
-                      ),
+                      ),*/
                       NavItem(
                         ic: Icons.settings,
                         text: "Hakkımızda",
@@ -453,8 +467,9 @@ class _MenuDashboardPageState extends State<MenuDashboardPage> {
                                       return Text('${snapshot.error}');
                                     }
 
-                                    return const CircularProgressIndicator(
-                                      color: Colors.red,
+                                    return Icon(
+                                      Icons.person_outline,
+                                      color: Colors.white.withOpacity(.5),
                                     );
                                   },
                                 ),
